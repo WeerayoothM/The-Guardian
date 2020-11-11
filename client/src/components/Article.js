@@ -6,7 +6,7 @@ export default function Article({ article }) {
   return (
     <div className="column">
       <Link to={`/details?id=${article.id}`}>
-        <img src={article.fields.thumbnail}></img>
+        <img src={article.fields.thumbnail} />
       </Link>
       <h3 className="headline">{article.webTitle}</h3>
       <p className="subheadline">{article.fields.trailText}</p>

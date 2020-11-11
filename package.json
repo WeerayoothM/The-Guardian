@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "cbuild": "npm run build --prefix client",
     "client": "npm start --prefix client",
     "server": "nodemon index.js",
     "start": "node index.js",

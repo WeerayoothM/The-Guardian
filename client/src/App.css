@@ -131,11 +131,11 @@ body {
   mix-blend-mode: multiply;
   width: 100%;
   filter: grayscale(100%);
-  opacity: 80%;
+  opacity: 0.8;
   transition: opacity 0.3s ease-in-out;
 }
 .column img:hover {
-  opacity: 100%;
+  opacity: 1;
   transition: opacity 0.3s ease-in-out;
 }
 .column-footer {

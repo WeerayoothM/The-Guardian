@@ -1,9 +1,11 @@
 const express = require('express');
 const axios = require('axios');
+const path = require('path');
 require('dotenv').config();
 
 const port = process.env.PORT || 5000;
 const KEY = process.env.GUARDIAN_API_KEY;
+const publicPath = path.join(__dirname, 'client', 'build');
 
 const app = express();
 app.use(express.urlencoded());
@@ -56,6 +58,12 @@ app.get('/api/sections', async (req, res) => {
   } catch (err) {
     console.error(err);
   }
+});
+
+//Serving Build folder for deployment
+app.use(express.static(publicPath));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(publicPath, 'index.html'));
 });
 
 app.listen(port, () => console.log('Server is running on port ' + port));
