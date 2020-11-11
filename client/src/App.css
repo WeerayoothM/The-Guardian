@@ -223,6 +223,9 @@ body {
 .sections-body {
   flex: 1;
 }
+.sections-body h1 {
+  text-transform: capitalize;
+}
 .sections-index {
   margin-right: 2rem;
   text-align: center;

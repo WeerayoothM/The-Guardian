@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Article from './Article';
 
-export default function Sections() {
+export default function Sections({ match }) {
+  const sectionParam = match.params.section;
   const [loading, setLoading] = useState(false);
   const [section, setSection] = useState('politics');
   const [sections, setSections] = useState([]);
@@ -10,8 +11,10 @@ export default function Sections() {
   const [sectionName, setSectionName] = useState('Politics');
 
   useEffect(() => {
-    fectSections();
-  }, []);
+    setSection(sectionParam);
+    setSectionName(sectionParam);
+    fetchSections();
+  }, [sectionParam]);
 
   useEffect(() => {
     fetchArticles();
@@ -22,7 +25,7 @@ export default function Sections() {
     setSectionName(e.target.innerText);
   };
 
-  const fectSections = () => {
+  const fetchSections = () => {
     axios.get('/api/sections').then((res) => {
       setSections(res.data);
     });
@@ -61,7 +64,7 @@ export default function Sections() {
         <div className="content">
           {loading ? (
             <div className="loader">
-              <img src="./loader.gif" />
+              <img src="/loader.gif" />
             </div>
           ) : (
             displayArticles()

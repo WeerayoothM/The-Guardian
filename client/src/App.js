@@ -31,7 +31,7 @@ function App() {
           )}
         />
         <Route path="/details" component={Details} />
-        <Route path="/sections" component={Sections} />
+        <Route path="/sections/:section" component={Sections} />
       </Switch>
     </div>
   );

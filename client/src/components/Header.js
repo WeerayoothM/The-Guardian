@@ -6,7 +6,10 @@ export default function Header() {
   return (
     <div className="header">
       <p className="header-category">
-        World's leading liberal voicess | <Link to="/sections">Sections</Link>
+        <Link to="/sections/business">Business</Link> |{' '}
+        <Link to="/sections/weather">Weather</Link> |{' '}
+        <Link to="/sections/sport">Sport</Link> |{' '}
+        <Link to="/sections/politics">Politics</Link>
       </p>
       <Link to="/">
         <h1>The Guardian.</h1>
