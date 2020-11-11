@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import moment from 'moment';
-import { Link } from 'react-router-dom';
+import Article from './Article';
 
-export default function Articles() {
+export default function SearchArticles({
+  page,
+  setPage,
+  term,
+  setTerm,
+  orderBy,
+  setOrderBy,
+}) {
   const [articles, setArticles] = useState([]);
-  const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [term, setTerm] = useState('');
-  const [orderBy, setOrderBy] = useState('newest');
 
   useEffect(() => {
     fetchArticles();
@@ -41,22 +44,7 @@ export default function Articles() {
 
   const displayArticles = () => {
     return articles.map((article) => (
-      <div key={article.id} className="column">
-        <Link to={`/details?id=${article.id}`}>
-          <img src={article.fields.thumbnail}></img>
-        </Link>
-        <h3 className="headline">{article.webTitle}</h3>
-        <p className="subheadline">{article.fields.trailText}</p>
-        <div className="column-footer">
-          <span>{parseInt(article.fields.wordcount / 130)} minutes read</span>
-          <span>
-            {article.fields.firstPublicationDate &&
-              moment(article.fields.firstPublicationDate).format(
-                'dddd MMMM Do YYYY'
-              )}
-          </span>
-        </div>
-      </div>
+      <Article key={article.id} article={article} />
     ));
   };
   const firstPage = (e) => {

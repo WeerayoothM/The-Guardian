@@ -7,7 +7,6 @@ export default function Details(history) {
   useEffect(() => {
     const url = history.location.search.split('=')[1];
     axios.get(`/api/details?url=${url}`).then((response) => {
-      console.log('response.data', response.data);
       setDetails(response.data);
     });
   }, []);

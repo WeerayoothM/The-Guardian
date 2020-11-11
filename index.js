@@ -11,6 +11,7 @@ app.use(express.json());
 
 // GET All articles
 app.get('/api/articles', async (req, res) => {
+  const querySection = req.query.section ? `&section=${req.query.section}` : '';
   const q = req.query.q || '';
   const orderBy = req.query.orderBy || 'newest';
   const page = req.query.page || 1;
@@ -18,7 +19,7 @@ app.get('/api/articles', async (req, res) => {
     const baseUrl =
       'https://content.guardianapis.com/search?show-fields=trailText,thumbnail,firstPublicationDate,wordcount';
     const response = await axios.get(
-      `${baseUrl}&api-key=${KEY}&page=${page}&order-by=${orderBy}&page-size=12&q=${q}&query-fields=trailText,headline`
+      `${baseUrl}&api-key=${KEY}&page=${page}&order-by=${orderBy}&page-size=12&q=${q}&query-fields=trailText,headline${querySection}`
     );
     const articles = response.data.response.results;
     const pages = response.data.response.pages;
@@ -38,6 +39,20 @@ app.get('/api/details', async (req, res) => {
     );
     const content = response.data.response.content;
     res.send(content);
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+//Get list all all sections
+app.get('/api/sections', async (req, res) => {
+  const baseUrl = 'https://content.guardianapis.com/sections';
+  try {
+    const response = await axios.get(
+      `${baseUrl}?api-key=${KEY}&show-fields=all`
+    );
+    const sections = response.data.response.results;
+    res.send(sections);
   } catch (err) {
     console.error(err);
   }
