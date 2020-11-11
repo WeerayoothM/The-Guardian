@@ -81,7 +81,7 @@ export default function Articles() {
   };
 
   return (
-    <div>
+    <div className="body">
       <div className="subhead">
         <div className="subhead-prev-group">
           <a href="" onClick={firstPage}>

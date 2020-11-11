@@ -5,7 +5,9 @@ import moment from 'moment';
 export default function Header() {
   return (
     <div className="header">
-      <p className="header-category">Politics | Sport | Business | All</p>
+      <p className="header-category">
+        Politics | Sport | Business | <Link to="/sections">More</Link>
+      </p>
       <Link to="/">
         <h1>The Guardian.</h1>
       </Link>
